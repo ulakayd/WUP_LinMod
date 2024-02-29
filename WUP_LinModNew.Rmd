@@ -62,11 +62,29 @@ This summarizes the correlation between degree of correlation between ARM streng
 
 ### Inferential  (Build model.1)
 
+```{r}
+model.1 <- lm(SIMS~ARM,data=data)
+summary.lm(model.1)
+```
+The p-value of this coefficient of arm 0.0000000000000002
+
+
 #### Predict at target point
 
+```{r}
+SIMSpredict = predict.lm(model.1,newdata = data.frame (ARM = 88, GRIP = 94))
+print (SIMSpredict)
+```
+
+The prediction for ARM = 88 and GRIP = 94 is .71
 
 #### scatterplot with model fit
-  
+
+```{r}
+plot(SIMS~ARM,data=data)
+abline(model.1,col="green")
+```  
+
 
 ## Model 2 SIM~GRIP
 
