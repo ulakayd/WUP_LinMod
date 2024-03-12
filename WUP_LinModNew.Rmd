@@ -105,7 +105,9 @@ plot(SIMS~GRIP,data=data)
 
 
 ### Numerical results 
-
+```{r}
+cor(SIMS~GRIP,data=data)
+```
 
 ### Inferential  (Build model.2)
 
