@@ -40,7 +40,10 @@ We will produce three equation models to get
 For each model we will predict sim for arm =88, grip =94.
 
 ## Model 1 SIM~ARMS
-
+```{r}
+model.1 <- lm(SIMS~ARM,data=data)
+summary.lm(model.1)
+```
 We have numerical response (sim score) and numerical explanatory variables (arm and grip strength)
 So we use the numerical-numerical helper file.
 
@@ -89,14 +92,27 @@ This is a scatter plot with a function on it, at ARM strength 88 the 95 percent 
 
 ## Model 2 SIM~GRIP
 
+```{r}
+model.2 <- lm(SIMS~GRIP + ARM ,data=data)
+summary.lm(model.2)
+``` 
+
 ### Now add in scatterplot
+
+```{r}
+plot(SIMS~GRIP,data=data)
+```
 
 
 ### Numerical results 
 
 
 ### Inferential  (Build model.2)
-  
+
+```{r}
+model.2 <- lm(SIMS~GRIP,data=data)
+summary.lm(model.2)
+```  
 
 #### predict model.2 at target point
 
@@ -106,14 +122,21 @@ This is a scatter plot with a function on it, at ARM strength 88 the 95 percent 
 
 ## Model 3 SIM~ARM+GRIP
 
+
+
 ### Numerical results (cor)
 
-`
-  
+
+`The table shows SIMS correlates with GRIP in a positive manner (0.64) and SIMS correlates with ARM also in a positive manner, (0.69) this says these variables are useful in predictings SIMS
+
+
+
+PLOT SHOWS GRIP AND ARM ARE NOT INDEP SO THIS IS NOT NECESSARILY A GOOD MODEL  
 ### Inferential  (Build 2-dimentional model.3)
 
 #### predict model.3 at target point
   
+
 
 ## Comparing nested models ANOVA Test
 
