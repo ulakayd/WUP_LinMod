@@ -93,7 +93,7 @@ This is a scatter plot with a function on it, at ARM strength 88 the 95 percent 
 ## Model 2 SIM~GRIP
 
 ```{r}
-model.2 <- lm(SIMS~GRIP + ARM ,data=data)
+model.2 <- lm(SIMS~GRIP ,data=data)
 summary.lm(model.2)
 ``` 
 
@@ -101,6 +101,7 @@ summary.lm(model.2)
 
 ```{r}
 plot(SIMS~GRIP,data=data)
+abline(model.2, col= "green")
 ```
 
 
@@ -118,29 +119,51 @@ summary.lm(model.2)
 
 #### predict model.2 at target point
 
+```{r}
+SIMSpredict = predict.lm(model.2,newdata = data.frame (ARM = 88, GRIP = 94), interval = "confidence")
+print (SIMSpredict)
+```
+
 #### now add the model fit to our plot for model.2
   
 
 
 ## Model 3 SIM~ARM+GRIP
 
+```{r}
+model3 = lm(SIMS~GRIP+ARM,data=data)
+summary.lm(model3)
+```
 
+Summary shows if you look at the p-value for both GRIP and ARM both are significant because they're both smaller than the null hypothesis of 0.05.
 
 ### Numerical results (cor)
 
+```{r}
+cor(SIMS~GRIP+ARM,data=data)
+```
 
-`The table shows SIMS correlates with GRIP in a positive manner (0.64) and SIMS correlates with ARM also in a positive manner, (0.69) this says these variables are useful in predictings SIMS
 
+This correlation says about 73% of the SIMS can be explained by GRIP and ARM
 
-
-PLOT SHOWS GRIP AND ARM ARE NOT INDEP SO THIS IS NOT NECESSARILY A GOOD MODEL  
 ### Inferential  (Build 2-dimentional model.3)
 
 #### predict model.3 at target point
-  
+
+```{r}
+SIMSpredict = predict.lm(model3,newdata = data.frame (ARM = 88, GRIP = 94), interval = "confidence")
+print (SIMSpredict)
+```  
 
 
 ## Comparing nested models ANOVA Test
+
+```{r}
+anova(model.1,model3)
+anova(model.2,model3)
+```
+
+For both model.1 and model.2 model3 which includes both GRIP and ARM is a better predictor. 
 
 ### Model.1 vs Model.3
 ### Model.2 vs Model.3
