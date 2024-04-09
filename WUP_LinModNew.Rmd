@@ -147,6 +147,10 @@ cor(SIMS~GRIP+ARM,data=data)
 This correlation says about 73% of the SIMS can be explained by GRIP and ARM
 
 ### Inferential  (Build 2-dimentional model.3)
+```{r}
+model3 <- lm(SIMS~GRIP+ARM,data=data)
+summary.lm(model3)
+```
 
 #### predict model.3 at target point
 
@@ -166,7 +170,18 @@ anova(model.2,model3)
 For both model.1 and model.2 model3 which includes both GRIP and ARM is a better predictor. 
 
 ### Model.1 vs Model.3
+```{r}
+anova(model.1,model3)
+```
+The p-value shows 0.0000004994.
 ### Model.2 vs Model.3
+
+```{r}
+anova(model.2,model3)
+```
+The p-value shows 0.0000000001495.
 
 ## Informally compare Model.1 with model.2
 
+Out of the two graphs shown the the better model.1,Model3 vs model.2, model3 the better value is Model.2 and Model 3 because the p-value is  0.0000000001495 which less than that of 0.0000004994.
+Which is a greater which is better.
